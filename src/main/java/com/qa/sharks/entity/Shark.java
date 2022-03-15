@@ -44,6 +44,15 @@ public class Shark {
 		this.habitat = habitat;
 		this.type = type;
 	}
+	
+	public Shark(long id, @Min(1) @Max(20) int age, String name, String habitat, String type) {
+		super();
+		this.id = id;
+		this.age = age;
+		this.name = name;
+		this.habitat = habitat;
+		this.type = type;
+	}
 
 	// Getters and Setters
 	
@@ -93,10 +102,12 @@ public class Shark {
 	public String toString() {
 		return "Shark [id=" + id + ", age=" + age + ", name=" + name + ", habitat=" + habitat + ", type=" + type + "]";
 	}
+	
+	// used for testing  
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(age, habitat, id, name, type);
+		return Objects.hash(age, habitat, name, type);
 	}
 
 	@Override
@@ -108,7 +119,7 @@ public class Shark {
 		if (getClass() != obj.getClass())
 			return false;
 		Shark other = (Shark) obj;
-		return age == other.age && Objects.equals(habitat, other.habitat) && id == other.id
-				&& Objects.equals(name, other.name) && Objects.equals(type, other.type);
+		return age == other.age && Objects.equals(habitat, other.habitat) && Objects.equals(name, other.name)
+				&& Objects.equals(type, other.type);
 	}
 }

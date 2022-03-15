@@ -2,6 +2,7 @@ package com.qa.sharks.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +16,14 @@ public class SharkController {
 	
 	private SharkService service;
 	
+	@Autowired // instructs Spring to insert the DuckService object
 	private SharkController(SharkService service) {
 		this.service = service;
 	}
 	
 	// Create - used to enter data
 	@PostMapping("/create")
+	// @RequestBody allows us to pass through an object/data when the request is made
 	public ResponseEntity<Shark> createShark(@RequestBody Shark shark){
 		return new ResponseEntity<Shark>(this.service.create(shark), HttpStatus.CREATED);
 	}
